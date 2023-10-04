@@ -1,4 +1,5 @@
 # 使用するベースイメージ
+# FROM --platform=linux/amd64 python:3.9
 FROM python:3.9
 
 # 環境変数を設定（Pythonのunbufferedモードを有効にする）
@@ -17,3 +18,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 RUN mkdir /app
 WORKDIR /app
 COPY ./src src
+
+EXPOSE 8080
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8080"]
+
